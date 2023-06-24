@@ -3,14 +3,13 @@ package com.example.basicnewsapplication
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.LinearLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.basicnewsapplication.api.NewsResponse
 import retrofit2.Call
 import retrofit2.Response
-import androidx.recyclerview.widget.RecyclerView
 import com.example.basicnewsapplication.databinding.ActivityMainBinding
 
+@Suppress("NAME_SHADOWING")
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     lateinit var adapter: NewsAdapter

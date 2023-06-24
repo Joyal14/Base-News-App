@@ -22,6 +22,6 @@ interface NewsInterface {
              .baseUrl(BASE_URL)
              .addConverterFactory(GsonConverterFactory.create())
              .build()
-         newsInstance = retrofit.create(NewsInterface::class.java)
+            newsInstance = retrofit.create(NewsInterface::class.java)
      }
  }
