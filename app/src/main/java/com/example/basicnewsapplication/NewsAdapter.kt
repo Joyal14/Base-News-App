@@ -44,8 +44,8 @@ class NewsAdapter(private val context: Context, private val article: List<Articl
     }
 
     private fun anim(view: View) {
-        val animation = AlphaAnimation(0.0f, 1.0f)
-        animation.duration = 1600
+        val animation = AlphaAnimation(0.0f, 0.7f)
+        animation.duration = 1500
         view.startAnimation(animation)
     }
 }

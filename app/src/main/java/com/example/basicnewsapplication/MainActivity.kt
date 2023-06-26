@@ -13,6 +13,8 @@ import com.example.basicnewsapplication.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     lateinit var adapter: NewsAdapter
+    var pageNum = 1
+    var totalResult = -1
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -21,14 +23,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getNews() {
-        val news = NewsService.newsInstance.getHeadlines("in", 1)
+        val news = NewsService.newsInstance.getHeadlines("in", pageNum)
         news.enqueue(object : retrofit2.Callback<NewsResponse> {
             override fun onResponse(call: Call<NewsResponse>, response: Response<NewsResponse>) {
                 val news = response.body()
                 if (news != null) {
                     Log.d("News error", news.toString())
-                    adapter = NewsAdapter(this@MainActivity,news.articles)
-                   binding.newsList.adapter = adapter
+                    adapter = NewsAdapter(this@MainActivity, news.articles)
+                    totalResult = news.totalResults
+                    binding.newsList.adapter = adapter
                     binding.newsList.layoutManager = LinearLayoutManager(this@MainActivity)
 
                 }
