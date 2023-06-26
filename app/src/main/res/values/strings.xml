@@ -3,4 +3,9 @@
     <string name="headline">HeadLine</string>
     <string name="desp">Desp</string>
     <string name="author_name">Author Name</string>
+    <string name="url">URL</string>
+    <string name="published_at">PUBLISHED AT</string>
+    <string name="description">DESCRIPTION</string>
+    <string name="title">TITLE</string>
+    <string name="source">SOURCE</string>
 </resources>

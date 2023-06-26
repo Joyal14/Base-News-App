@@ -20,6 +20,7 @@ class NewsAdapter(private val context: Context, private val article: List<Articl
         var title: TextView = itemView.findViewById(R.id.txtTitle)
         var des: TextView = itemView.findViewById(R.id.txtDes)
         var author: TextView = itemView.findViewById(R.id.txtAuthor)
+        var url:TextView =itemView.findViewById(R.id.txt_url)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticleViewHolder {
@@ -37,6 +38,7 @@ class NewsAdapter(private val context: Context, private val article: List<Articl
         holder.title.text = article.title
         holder.des.text = article.description
         holder.author.text = article.author
+        holder.url.text = article.publishedAt
         Glide.with(context).load(article.urlToImage).into(holder.newsImage)
         holder.itemView.setOnClickListener {
             Toast.makeText(context, article.title, Toast.LENGTH_SHORT).show()
