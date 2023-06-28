@@ -11,21 +11,34 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.basicnewsapplication.api.Article
+import com.example.basicnewsapplication.databinding.ItemsNewsBinding
 
 class NewsAdapter(private val context: Context, private val article: List<Article>) :
     RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
 
-    inner class ArticleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var newsImage: ImageView = itemView.findViewById(R.id.imgNews)
-        var title: TextView = itemView.findViewById(R.id.txtTitle)
-        var des: TextView = itemView.findViewById(R.id.txtDes)
-        var author: TextView = itemView.findViewById(R.id.txtAuthor)
-        var url:TextView =itemView.findViewById(R.id.txt_url)
+    //ViewHolder class to fetch itemView
+//    inner class ArticleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+//        var newsImage: ImageView = itemView.findViewById(R.id.imgNews)
+//        var title: TextView = itemView.findViewById(R.id.txtTitle)
+//        var des: TextView = itemView.findViewById(R.id.txtDes)
+//        var author: TextView = itemView.findViewById(R.id.txtAuthor)
+//        var url:TextView =itemView.findViewById(R.id.txt_url)
+//    }
+    inner class ArticleViewHolder(itemView:ItemsNewsBinding) : RecyclerView.ViewHolder(itemView.root){
+        var newsImage: ImageView = itemView.imgNews
+        var title: TextView = itemView.txtTitle
+        var des: TextView = itemView.txtDes
+        var author: TextView = itemView.txtAuthor
+        var url:TextView =itemView.txtUrl
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticleViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.items_news, parent, false)
-        return ArticleViewHolder(view)
+//        val view = LayoutInflater.from(context).inflate(R.layout.items_news, parent, false)
+//        return ArticleViewHolder(view)
+
+        //using View Binding
+        val binding = ItemsNewsBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+        return ArticleViewHolder(binding)
     }
 
     override fun getItemCount(): Int {
@@ -46,8 +59,8 @@ class NewsAdapter(private val context: Context, private val article: List<Articl
     }
 
     private fun anim(view: View) {
-        val animation = AlphaAnimation(0.0f, 0.7f)
-        animation.duration = 1500
+        val animation = AlphaAnimation(0.0f, 1.0f)
+        animation.duration = 1400
         view.startAnimation(animation)
     }
 }
