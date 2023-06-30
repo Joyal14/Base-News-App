@@ -1,6 +1,7 @@
 package com.example.basicnewsapplication
 
 import android.content.Context
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +9,7 @@ import android.view.animation.AlphaAnimation
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.browser.customtabs.CustomTabsIntent
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.basicnewsapplication.api.Article
@@ -52,9 +54,17 @@ class NewsAdapter(private val context: Context, private val article: List<Articl
         holder.des.text = article.description
         holder.author.text = article.author
         holder.url.text = article.publishedAt
+
+        //for Image display need to use Glide lb retrofit not support imageView
         Glide.with(context).load(article.urlToImage).into(holder.newsImage)
+
         holder.itemView.setOnClickListener {
             Toast.makeText(context, article.title, Toast.LENGTH_SHORT).show()
+//            val url = "https://developers.android.com"
+
+            //Chrome custom tab using
+            val intent = CustomTabsIntent.Builder().build()
+            intent.launchUrl(context, Uri.parse(article.url))
         }
     }
 

@@ -13,7 +13,7 @@ import com.example.basicnewsapplication.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     lateinit var adapter: NewsAdapter
-    var pageNum = 1
+    private var pageNum = 1
     var totalResult = -1
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity() {
     private fun getNews() {
         val news = NewsService.newsInstance.getHeadlines("in", pageNum)
         news.enqueue(object : retrofit2.Callback<NewsResponse> {
+
             override fun onResponse(call: Call<NewsResponse>, response: Response<NewsResponse>) {
                 val news = response.body()
                 if (news != null) {
