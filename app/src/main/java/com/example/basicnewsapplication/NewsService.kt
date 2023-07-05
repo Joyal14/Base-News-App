@@ -22,14 +22,20 @@ interface NewsInterface {
 }
 
 object NewsService {
-    val newsInstance: NewsInterface
 
     //Retrofit connection to interface
-    init {
+//    init {
+//        val retrofit = Retrofit.Builder()
+//            .baseUrl(BASE_URL)
+//            .addConverterFactory(GsonConverterFactory.create())
+//            .build()
+//        newsInstance = retrofit.create(NewsInterface::class.java)
+//    }
+    val newsInstance: NewsInterface by lazy {
         val retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-        newsInstance = retrofit.create(NewsInterface::class.java)
+        retrofit.create(NewsInterface::class.java)
     }
 }
